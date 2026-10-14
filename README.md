@@ -7,8 +7,12 @@ you are in. This tap installs it on macOS (Apple Silicon and Intel).
 ## Install
 
 ```bash
-brew tap powell-clark/voice-to-text && brew install voice-to-text
+brew install powell-clark/voice-to-text/voice-to-text
 ```
+
+The full name taps this repository and trusts only this formula, as Homebrew's
+[tap trust](https://docs.brew.sh/Tap-Trust) asks; `brew tap` followed by a
+bare `brew install voice-to-text` is refused for an untrusted tap.
 
 The formula builds from source with Rust and CMake, with Metal GPU
 acceleration, so the first install takes a few minutes. Homebrew installs the
