@@ -1,0 +1,48 @@
+# Builds the formula from source on a standard GitHub-hosted macOS runner,
+# then runs its test and Homebrew's audit. Free on a public repository.
+name: test
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "Formula/**"
+
+permissions: {}
+
+defaults:
+  run:
+    shell: bash -xeuo pipefail {0}
+
+jobs:
+  test:
+    runs-on: macos-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    steps:
+      # Checks out this repository as the powell-clark/voice-to-text tap and
+      # trusts it; no actions/checkout step is needed.
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@e99025eb970cfa124b8284a35463d87426917478 # 2026.09.28.1
+        with:
+          # The release users run, not Homebrew's main branch.
+          stable: true
+
+      # Install the way the README tells users to: a fully qualified name on
+      # an untrusted tap, which trusts only this formula (Homebrew 6 tap trust).
+      - name: Untrust the tap
+        run: brew untrust --tap powell-clark/voice-to-text
+
+      - name: Build from source
+        run: brew install --build-from-source --verbose powell-clark/voice-to-text/voice-to-text
+
+      - name: Test
+        run: |
+          vtt --version
+          brew test --verbose powell-clark/voice-to-text/voice-to-text
+
+      - name: Audit
+        run: brew audit --strict --online powell-clark/voice-to-text/voice-to-text
