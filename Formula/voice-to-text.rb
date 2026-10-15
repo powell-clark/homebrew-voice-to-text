@@ -5,11 +5,10 @@ class VoiceToText < Formula
   # third_party/whisper.cpp and third_party/SPIRV-Headers submodules, and
   # Homebrew's Git download runs `git submodule update --init --recursive`.
   url "https://github.com/powell-clark/voice-to-text.git",
-      tag:      "v2.5.1",
-      # PLACEHOLDER until the v2.5.1 tag exists: replace with the tag's COMMIT
-      # SHA (the peeled `refs/tags/v2.5.1^{}` line of `git ls-remote`, not the
-      # annotated tag object). Install fails loudly until this is filled in.
-      revision: "c198766de60d104e5eb189742cb7ea574f16c8b5"
+      tag:      "v2.5.2",
+      # The tag's COMMIT SHA: the peeled `refs/tags/v2.5.2^{}` line of
+      # `git ls-remote`, not the annotated tag object.
+      revision: "8544abaa7fea25612c0329edb79fb7e943b40797"
   license "Apache-2.0"
   head "https://github.com/powell-clark/voice-to-text.git", branch: "main"
 
