@@ -9,7 +9,7 @@ class VoiceToText < Formula
       # PLACEHOLDER until the v2.5.1 tag exists: replace with the tag's COMMIT
       # SHA (the peeled `refs/tags/v2.5.1^{}` line of `git ls-remote`, not the
       # annotated tag object). Install fails loudly until this is filled in.
-      revision: "REPLACE_WITH_V2_5_1_COMMIT_SHA"
+      revision: "c198766de60d104e5eb189742cb7ea574f16c8b5"
   license "Apache-2.0"
   head "https://github.com/powell-clark/voice-to-text.git", branch: "main"
 
